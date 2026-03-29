@@ -33,11 +33,11 @@ export const generateRoomCode = (): string => {
 };
 
 export const generateUniqueRoomCode = (): string => {
-  for (let attempt = 0; attempt < 50; attempt += 1) {
+  for (let attempt = 0; attempt < 1000; attempt += 1) {
     const c = generateRoomCode();
     if (!gameIdByCode.has(c)) return c;
   }
-  return generateRoomCode() + generateRoomCode().slice(0, 2);
+  throw new Error('Could not generate a unique 6-character room code');
 };
 
 export const validateQuestionsPayload = (questions: unknown): questions is Question[] => {
